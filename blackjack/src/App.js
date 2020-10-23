@@ -33,13 +33,13 @@ class App extends React.Component {
 
       console.log('Data Before', this.state.Data)
 
-      this.state.Data.dealt += 1
+      this.setState({ Data: { ...this.state.Data, dealt: this.state.Data.dealt + 1 } })
       this.setState({ Data: { ...this.state.Data, PlayerHand: [...this.state.Data.PlayerHand, this.state.Data.deck[this.state.Data.dealt]] } });
       console.log('Data after', this.state.Data)
     }
     else if (person === 1) {
       this.setState({ Data: { ...this.state.Data, DealerHand: [...this.state.Data.DealerHand, this.state.Data.deck[this.state.Data.dealt]] } });
-      this.state.Data.dealt += 1
+      this.setState({ Data: { ...this.state.Data, dealt: this.state.Data.dealt + 1 } })
       console.log(this.state.Data.DealerHand)
     }
   }
@@ -47,23 +47,23 @@ class App extends React.Component {
   //deals starting hands
   //issue is here. not adding new cards except last one
   start() {
-    this.state.Data.dealt = 0
-    this.state.Data.PlayerHand = []
-    this.state.Data.DealerHand = []
-    this.state.Data.deck = shuffle(Cards())
+    this.setState({ Data: { ...this.state.Data, dealt: 0 } })
+    this.setState({ Data: { ...this.state.Data, PlayerHand: [] } });
+    this.setState({ Data: { ...this.state.Data, DealerHand: [] } });
+    this.setState({ Data: { ...this.state.Data, deck: shuffle(Cards()) } });
     //can change this for loop to fit how many players, only two for testing purposes
-    for (var i = 0; i < 2; i++) {
-
-      this.state.Data.dealt += 1
+    for (var i = 0; i < 3; i++) {
+      console.log(i)
+      this.setState({ Data: { ...this.state.Data, dealt: this.state.Data.dealt + 1 } })
       this.addNewCard(this.state.Data.deck[this.state.Data.dealt], 0)
-      this.state.Data.dealt += 1
+      this.setState({ Data: { ...this.state.Data, dealt: this.state.Data.dealt + 1 } })
       this.addNewCard(this.state.Data.deck[this.state.Data.dealt], 1)
+      console.log(this.state.Data)
     }
+    console.log(this.state.Data)
   }
   //does the dealers AI, ran out of time due to hunting bug.
   dealer(pScore) {
-    values = { J: 10, Q: 10, K: 10 }
-
   }
   //the render
   render() {
