@@ -14,20 +14,22 @@ const App = () => {
         setDHand([])
         return true
     }
+    const deal = async () => {
+        await setPHand([deck.pop()])
+    }
     const start = (e) => {
         e.preventDefault()
-        // deck = (shuffle(Cards()))
-        // console.log(deck[0])
-        // setPHand([deck.pop()])
-        // setDHand([deck.pop()])
-        console.log('bruh')
+        deck = (shuffle(Cards()))
+        setPHand([deck[0], deck[2]])
+        setDHand([deck[1], deck[3]])
+        setDealt(3)
     }
     const hit = (e) => {
         e.preventDefault()
         console.log('got hit!')
     }
     useEffect(() => {
-        console.log(pHand, dHand, dealt, deck)
+        console.log('this stuff has been changed', pHand, dHand, dealt, deck)
     }, [pHand, dHand, dealt, deck])
     return (
         <div className="App" >
